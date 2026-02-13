@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for you, from shijal · valentine's letter</title>
+    <!-- handwritten font + romantic vibe -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* stars background – lots of twinkling stars */
+        .stars, .twinkling, .clouds {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .stars {
+            background: #000 url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48Y2lyY2xlIGN4PSI2IiBjeT0iMTQiIHI9IjEiIGZpbGw9IndoaXRlIiAvPjxjaXJjbGUgY3g9IjE2MCIgY3k9IjYwIiByPSIxLjUiIGZpbGw9IndoaXRlIiAvPjxjaXJjbGUgY3g9IjQwIiBjeT0iMjAwIiByPSIxLjIiIGZpbGw9IndoaXRlIiAvPjxjaXJjbGUgY3g9IjI4MCIgY3k9IjE4MCIgcj0iMSIgZmlsbD0id2hpdGUiIC8+PGNpcmNsZSBjeD0iMjAiIGN5PSI4MCIgcj0iMS4yIiBmaWxsPSJ3aGl0ZSIgLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIyNTAiIHI9IjEuNCIgZmlsbD0id2hpdGUiIC8+PC9zdmc+');
+            background-size: 200px 200px;
+            animation: starsAnim 200s linear infinite;
+            opacity: 0.8;
+        }
+
+        .twinkling {
+            background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSIyIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjgiIC8+PGNpcmNsZSBjeD0iMjUwIiBjeT0iMTUwIiByPSIxLjgiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuNyIgLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSIyMDAiIHI9IjEuNSIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC45IiAvPjwvc3ZnPg==');
+            background-size: 300px 300px;
+            animation: twinklingAnim 4s infinite alternate;
+        }
+
+        @keyframes starsAnim {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-2000px); }
+        }
+
+        @keyframes twinklingAnim {
+            0% { opacity: 0.2; }
+            100% { opacity: 0.8; }
+        }
+
+        /* main card – like a vintage letter */
+        .letter-card {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 700px;
+            max-height: 80vh;
+            background: rgba(255, 250, 240, 0.9);
+            backdrop-filter: blur(8px);
+            border-radius: 40px 20px 40px 20px;
+            box-shadow: 0 25px 50px -8px rgba(0,0,0,0.6), 0 0 0 2px #fbb5b5 inset, 0 0 0 4px #ffe9e9 inset;
+            padding: 2rem 2rem 1.8rem;
+            font-family: 'Caveat', cursive;
+            font-size: 1.6rem;
+            line-height: 1.4;
+            color: #2e1b0e;
+            transition: all 0.3s ease;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #ffb3b3 #ffe3e3;
+        }
+
+        .letter-card::-webkit-scrollbar {
+            width: 8px;
+        }
+        .letter-card::-webkit-scrollbar-track {
+            background: #ffe3e3;
+            border-radius: 10px;
+        }
+        .letter-card::-webkit-scrollbar-thumb {
+            background: #ff9e9e;
+            border-radius: 10px;
+        }
+
+        /* slide content */
+        .slide-content {
+            text-align: center;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
+        .slide-content p {
+            margin: 0.5rem 0;
+        }
+
+        /* improved dog image – fits perfectly, no layout shift */
+        .dog-image {
+            max-width: 260px;
+            max-height: 220px;
+            width: auto;
+            height: auto;
+            border-radius: 30px;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+            margin: 1.2rem auto;
+            display: block;
+            border: 5px solid white;
+            background: #f3d9c2;  /* warm placeholder tone */
+            object-fit: contain;    /* ensures whole image visible, no crop */
+        }
+
+        /* remove old placeholder style (not needed now, but keep for safety) */
+        .image-placeholder {
+            display: none;
+        }
+
+        /* buttons */
+        .options {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .opt-btn {
+            background: #fff2d7;
+            border: 2px solid #ffaeae;
+            border-radius: 60px;
+            padding: 0.8rem 2.5rem;
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #6b3f1f;
+            box-shadow: 0 8px 0 #d48d8d;
+            cursor: pointer;
+            transition: all 0.07s;
+            line-height: 1;
+        }
+
+        .opt-btn:active {
+            transform: translateY(7px);
+            box-shadow: 0 1px 0 #d48d8d;
+        }
+
+        .next-btn {
+            background: #ffc6c6;
+            border: none;
+            border-radius: 50px;
+            padding: 0.8rem 2.5rem;
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #4d2f17;
+            border: 2px solid white;
+            box-shadow: 0 5px 0 #b16f6f;
+            cursor: pointer;
+            transition: all 0.07s;
+            margin: 1.5rem auto 0.5rem;
+            display: inline-block;
+            width: auto;
+        }
+
+        .next-btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 0 0 #b16f6f;
+        }
+
+        .next-btn.hidden, .opt-btn.hidden {
+            display: none;
+        }
+
+        .footer-note {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1rem;
+            margin-top: 1rem;
+            opacity: 0.7;
+            color: #6b4f3a;
+        }
+
+        .heart {
+            color: #dc143c;
+            font-size: 2rem;
+            filter: drop-shadow(0 0 6px #ff9a9a);
+        }
+
+        .big-heart {
+            font-size: 3rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* small adjustments */
+        .signature {
+            font-size: 2rem;
+            margin-top: 1rem;
+            border-top: 2px dashed #e1a4a4;
+            padding-top: 1rem;
+            text-align: right;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- star layers -->
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+
+    <div class="letter-card" id="letterCard">
+        <div class="slide-content" id="slideContent"></div>
+        <div id="optionsContainer" class="options"></div>
+        <button class="next-btn hidden" id="nextBtn" onclick="nextSlide()">➡️ next ➡️</button>
+        <div class="footer-note" id="footerNote"></div>
+    </div>
+
+    <script>
+        // ---------- slide data ----------
+        const baseSlides = [
+            { type: 'text', content: 'hiiii 👋' },
+            { type: 'options', question: 'how was ur sleep ?', options: ['good 😊', 'bad 😴'] },
+            { type: 'text', content: 'u came up to here mam are u ready for next round jokes aside go next side' },
+            { type: 'text', content: `when i send u this message it will be around 3 30 am becuase its your may be 4 or 5 am u awakup that time idk why so i send at this time what to do i also set an auto message to send u message so u can see it damn i will be in sleep also in that day we have planned for a weekend type like hike one day and at night we will go some clubins for fun as my friends wanted to explore city so yeah they asked me out i should go haha i miss those old friedns yeah yeah thats alll what i am sendin my own messgae i m leavin it over and out not for this slide` },
+            { type: 'mixed', content: `oh my gawd did u really read that just take this flower 🌸` },
+            { type: 'text', content: `you cane up to here am i too good or what i dont know i know i know i am to busy not like before replyn fast goes days to text also if that happens believe me i am in mess or i m studin then yeah so many things to ask but yeah this fuckin distance i hate it i wanted to ask about the place where do u live and many more i hope someday we will talk and yeah genrally i m ghostin but yeah i have many friends and only two bestfriens i hope i can add u , btw they are craxy dont mind them i m always between them now i am coding writing these i am in call withese idiots and yeah i love ur eyes just flirtin hahah i dont do now i have forgotten may be too much work nowdays still i have to respond 4 mails and 2 meets fuck noooo the worst part is i have to wear shirt up and my shorts down haha crazyy and yeah yeahh next slide` },
+            { type: 'text', content: `if you still readin i hate you too muchhh ,thanks btw and yeah happy valentines and over and out i hope ur day goesss very good and yeah mine when u will reply i will be sleepin and yeah yeah ,when i m makin thse its feb 5 night and yeah i am doing work sideways writing these code well it is hard to make but yeah i hope this brings u smile, and yeah i will be out for 2 days cause i will fuckin read syllabus whole night if u see me on tiktok stufs just know i was distracted may be someday i will just deativate tiktok i m just keepin to alk with u i generally dont use it but yeah it s fun to talk to you ande next slide` },
+            { type: 'text', content: `My goodness i am gonna stop sorry here its like we are in a 18 th century writin letters and sendin haha ok seeya may be this message is old and yeah but i set an time for feb 14 3 30 am hope and at last a letter style yours sincerely shijal mishra i hatte you 3000 over and out Dhijayangggg if its wrong send me a voice note loved to hear that oopise secret toldd haha over and out .` }
+        ];
+
+        const badSleepMsg = "u should think of me haha u will wake up whole night";
+        const goodSleepMsg = `Hey Be ready u need to go to work and yeah i hope kids annoy u and yeah the most annoyable one is me you can see me in that haha`;
+
+        let slides = [];
+        let currentSlideIndex = 0;
+
+        const slideContentDiv = document.getElementById('slideContent');
+        const optionsDiv = document.getElementById('optionsContainer');
+        const nextBtn = document.getElementById('nextBtn');
+        const footerNote = document.getElementById('footerNote');
+
+        function initSlides() {
+            slides = [];
+            slides.push(baseSlides[0]);
+            slides.push(baseSlides[1]);
+        }
+
+        let restSlides = baseSlides.slice(2);
+
+        function renderSlide() {
+            optionsDiv.innerHTML = '';
+            footerNote.innerHTML = '';
+
+            if (currentSlideIndex >= slides.length) {
+                slideContentDiv.innerHTML = '<div class="big-heart">❤️</div><p>over & out · i hate you 3000</p><p class="signature">yours, shijal mishra</p>';
+                nextBtn.classList.add('hidden');
+                return;
+            }
+
+            const slide = slides[currentSlideIndex];
+            let html = '';
+
+            if (slide.type === 'text') {
+                html = `<p>${slide.content.replace(/\n/g, '<br>')}</p>`;
+                nextBtn.classList.remove('hidden');
+            }
+            else if (slide.type === 'options') {
+                html = `<p>${slide.question}</p>`;
+                slide.options.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'opt-btn';
+                    btn.innerText = opt;
+                    btn.onclick = () => handleSleepOption(opt);
+                    optionsDiv.appendChild(btn);
+                });
+                nextBtn.classList.add('hidden');
+            }
+            else if (slide.type === 'mixed' && slide.content.includes('flower')) {
+                // slide with dog image – using clean img tag and preserving text flow
+                html = `<p>${slide.content}</p>
+                        <img class="dog-image" src="dog.jpeg" alt="dog" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="image-placeholder" style="display:none;">
+                            <span>🐶</span> dog.jpg (image not found)
+                        </div>
+                        <p>thanks for readin my nonsense btw i dont believe on valentines day for me eveeryday is valentines day ahhh what a fuckin typicl everyone dialog right yeah i didnt like it too but yeah everything cringe is likable in every perspective also like i hate you 3000 and yeah yeah go next slide</p>`;
+                nextBtn.classList.remove('hidden');
+            }
+
+            slideContentDiv.innerHTML = html;
+
+            if (currentSlideIndex === 0) footerNote.innerHTML = '✨ a message just for you ✨';
+        }
+
+        function handleSleepOption(opt) {
+            const choice = opt.toLowerCase();
+            if (choice.includes('good')) {
+                slides.splice(currentSlideIndex + 1, 0, { type: 'text', content: goodSleepMsg });
+            } else {
+                slides.splice(currentSlideIndex + 1, 0, { type: 'text', content: badSleepMsg });
+            }
+            if (slides.length <= currentSlideIndex + 2) {
+                slides = slides.concat(restSlides);
+            }
+            currentSlideIndex++;
+            renderSlide();
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < slides.length - 1) {
+                currentSlideIndex++;
+                renderSlide();
+            } else {
+                currentSlideIndex++;
+                renderSlide();
+            }
+        }
+
+        // prepare restSlides: mark the mixed one
+        restSlides = restSlides.map((s, idx) => {
+            if (idx === 2) {
+                return { type: 'mixed', content: 'oh my gawd did u really read that just take this flower 🌸' };
+            }
+            return s;
+        });
+
+        initSlides();
+        renderSlide();
+    </script>
+</body>
+</html>
